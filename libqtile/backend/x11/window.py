@@ -1728,7 +1728,12 @@ class Window(_Window, base.Window):
         tiled = [win.window.wid for win in (self.group.tiled_windows if self.group else [])]
         tiled_stack = [wid for wid in stack if wid in tiled and wid != self.window.wid]
         if do_float and self._float_state == FloatStates.NOT_FLOATING:
-            if self.group and self.group.screen:
+            if (
+                self.group
+                and self.group.screen
+                and self.float_x is not None
+                and self.float_y is not None
+            ):
                 screen = self.group.screen
                 self._enablefloating(
                     screen.x + self.float_x,

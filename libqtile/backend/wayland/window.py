@@ -409,7 +409,12 @@ class Window(typing.Generic[S], _Base, base.Window, HasListeners):
     @floating.setter
     def floating(self, do_float: bool) -> None:
         if do_float and self._float_state == FloatStates.NOT_FLOATING:
-            if self.group and self.group.screen:
+            if (
+                self.group
+                and self.group.screen
+                and self.float_x is not None
+                and self.float_y is not None
+            ):
                 screen = self.group.screen
                 if not self._float_width:  # These might start as 0
                     self._float_width = self._width
