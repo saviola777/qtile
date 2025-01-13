@@ -913,7 +913,7 @@ class Qtile(CommandObject):
             hook.fire("setgroup")
             old.group.layout_all()
             self.current_group.focus(self.current_window, warp)
-            if self.current_window is None and warp:
+            if warp:
                 self.warp_to_screen()
 
     def move_to_group(self, group: str) -> None:
